@@ -1,0 +1,72 @@
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.container {
+    border-radius: 20px;
+    width: 300px;
+    max-width: 800px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+h2 {
+    color: #004f44;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    text-align: center;
+    outline: 30px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+
+
+.login-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+.errorlist {
+    color: #a90000;
+      list-style-type: none;
+}
+
+.err {
+    color: #a90000;
+    text-align: center;
+    font-size: 17px
+}
+

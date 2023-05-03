@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            <input type="text" name="city" placeholder="Enter a city name">
+        </label>
+        <button type="submit" class="login-button">Get Weather</button>
+
+    </form>
+
+    <div class="city-container">
+        {% for city in cities %}
+
+            <div class="city">
+                <div class="city-image">
+                    <img src="https://openweathermap.org/img/wn/{{ city.icon }}@2x.png" alt="Weather Icon">
+                </div>
+                <h1>{{ city.name }}</h1>
+
+                <h3>{{ city.temperature|floatformat:1 }}&deg;C</h3>
+
+                <p>Real Feel: {{ city.feels_like|floatformat:1 }}&deg;C</p>
+                <p>Humidity: {{ city.humidity }}%</p>
+                <p>Wind Speed: {{ city.wind_speed }} m/s</p>
+                <p>{{ city.type }} </p>
+
+                <form method="POST" action="{% url 'delete_city' city.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">X</button>
+                </form>
+            </div>
+        {% empty %}
+            {{ error }}
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+header {
+    background-color: #333;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+li.logout {
+    margin-left: auto;
+}
+
+li.login {
+    margin-left: auto;
+}
+
+.city-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, calc(25% - 20px)));
+    grid-gap: 20px;
+}
+
+.city {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+}
+
+.city-image img {
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.city h3 {
+    font-size: 30px;
+    text-align: center;
+    margin: auto 55px auto auto;
+
+}
+
+.city h1 {
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+.city p {
+    text-align: center;
+    font-family: "HoloLens MDL2 Assets", sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.delete-button {
+    font-family: "HoloLens MDL2 Assets", sans-serif;
+    font-size: 20px;
+    text-shadow: 0 0 8px #f80000;
+    color: #000000;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px
+}
+

@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="us">
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" href="{% static 'style/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/bg.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if is_logged %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'weather' %}">Weather</a></li>
+                <li class="logout"><a href="{% url 'logout_view' %}">Logout</a></li>
+            {% else %}
+                <li class="login"><a href="{% url 'login_view' %}">Login</a></li>
+                <li><a href="{% url 'register_view' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+{% if is_logged %}
+    Logged
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
+
+<footer>
+{#        <p>&copy; </p>#}
+</footer>
+
+</body>
+</html>
