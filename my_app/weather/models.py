@@ -1,5 +1,7 @@
 from django.db import models
 
+from authapp.models import Register
+
 
 # Create your models here.
 class City(models.Model):
@@ -10,3 +12,8 @@ class City(models.Model):
     wind_speed = models.FloatField(null=True)
     type = models.TextField(null=True)
     icon = models.ImageField(null=True)
+
+    user = models.ForeignKey(Register, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        unique_together = ('name', 'user')

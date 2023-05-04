@@ -1,4 +1,5 @@
 import hashlib
+from datetime import datetime
 
 from django.contrib.auth import logout
 
@@ -18,7 +19,7 @@ def home(request):
         context = {'is_logged': is_logged,
                    'user': user}
         return render(request, 'base.html', context)
-    except:
+    except:  # NOQA
         return render(request, 'base.html')
 
 
