@@ -6,4 +6,6 @@
     <br>Email: {{ user.email }}
     <br>Password: {{ user.password1 }}
 
+    <a href="{% url 'profile_delete' %}" class="delete_button">Delete</a>
+
 {% endblock %}

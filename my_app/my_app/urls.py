@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authapp.urls')),
     path('', include('weather.urls')),
-    # handler404 = "mysite.views.my_custom_page_not_found_view"
 
 ]
+
+# handler404 = 'my.views.page_not_found'

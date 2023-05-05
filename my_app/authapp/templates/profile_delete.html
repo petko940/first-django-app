@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="profile_delete">
+        <h1>Are you sure you want to delete your profile?</h1>
+
+        <form id='delete' method="post">
+
+            {% csrf_token %}
+
+            <a href="{% url 'profile' %}" class="btn_back">Back</a>
+            <input class="btn_delete" type="submit" value="Yes">
+
+        </form>
+    </div>
+
+{% endblock %}

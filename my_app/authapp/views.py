@@ -2,6 +2,7 @@ import hashlib
 from datetime import datetime
 
 from django.contrib.auth import logout
+from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from authapp.forms import RegisterForm, LoginForm
@@ -9,6 +10,8 @@ from authapp.models import Register
 
 from bs4 import BeautifulSoup
 import requests
+
+from weather.models import City
 
 
 # Create your views here.
@@ -118,46 +121,20 @@ def profile(request):
 
     return render(request, 'profile.html', context)
 
-# def profile_edit(request):
-#     is_logged = check_if_someone_logged(request)
-#
-#     # Check if the user is logged in and the user_id session variable exists
-#     if is_logged and 'user_id' in request.session:
-#         user_id = request.session['user_id']
-#
-#         try:
-#             user = Register.objects.get(id=user_id)
-#         except Register.DoesNotExist:
-#             # Redirect to an error page or display an error message
-#             return HttpResponse("User does not exist")
-#
-#         if request.method == 'POST':
-#             # Save a copy of the existing user data
-#             old_username = user.username
-#             old_email = user.email
-#
-#             # Delete the existing user data from the database
-#             user.delete()
-#
-#             # Save the new user data from the form
-#             form = RegisterForm(request.POST)
-#             if form.is_valid():
-#                 form.save()
-#                 return redirect('profile')
-#             else:
-#                 print(form.errors)
-#                 # Restore the old user data if the form is not valid
-#                 Register.objects.create(username=old_username, email=old_email)
-#         else:
-#             # Create a new instance of the form with the existing user data
-#             form = RegisterForm(instance=user)
-#
-#         context = {
-#             'is_logged': is_logged,
-#             'user': user,
-#             'form': form
-#         }
-#         return render(request, 'profile_edit.html', context)
-#     else:
-#         # Redirect to the login page if the user is not logged in
-#         return redirect('login')
+
+def profile_delete(request):
+    is_logged = check_if_someone_logged(request)
+    user = Register.objects.get(id=request.session.get('user_id'))
+    cities = City.objects.filter(user=user)
+
+    if request.method == 'POST':
+        user.delete()
+        cities.delete()
+        request.session.flush()
+        return redirect('home')
+
+    context = {'user': user,
+               'is_logged': is_logged}
+    return render(request, 'profile_delete.html', context)
+
+
