@@ -8,13 +8,15 @@ from django.shortcuts import render, redirect
 from authapp.forms import RegisterForm, LoginForm
 from authapp.models import Register
 
-from bs4 import BeautifulSoup
-import requests
 
 from weather.models import City
 
 
 # Create your views here.
+def page_not_found(request, exception):
+    return HttpResponse("Page not found", status=404)
+
+
 def home(request):
     try:
         user = Register.objects.get(id=request.session.get('user_id'))
@@ -114,6 +116,9 @@ def logout_view(request):
 
 
 def profile(request):
+    if not check_if_someone_logged(request):
+        return redirect('home')
+
     user = Register.objects.get(id=request.session.get('user_id'))
     is_logged = check_if_someone_logged(request)
     context = {'is_logged': is_logged,
