@@ -13,21 +13,23 @@ def update_weather_data(city_obj, user):
     url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c584d18750dd25c4a8c4e7c84d98d9d7'
     response = requests.get(url).json()
 
-    temperature = response['main']['temp'] - 273.15
-    feels_like = response['main']['feels_like'] - 273.15
-    humidity = response['main']['humidity']
-    wind_speed = response['wind']['speed']
-    weather_type = response['weather'][0]['main']
-    icon = response['weather'][0]['icon']
+    if response['cod'] != '404':
 
-    city_obj.temperature = temperature
-    city_obj.feels_like = feels_like
-    city_obj.humidity = humidity
-    city_obj.wind_speed = wind_speed
-    city_obj.type = weather_type
-    city_obj.icon = icon
+        temperature = response['main']['temp'] - 273.15
+        feels_like = response['main']['feels_like'] - 273.15
+        humidity = response['main']['humidity']
+        wind_speed = response['wind']['speed']
+        weather_type = response['weather'][0]['main']
+        icon = response['weather'][0]['icon']
 
-    city_obj.save()
+        city_obj.temperature = temperature
+        city_obj.feels_like = feels_like
+        city_obj.humidity = humidity
+        city_obj.wind_speed = wind_speed
+        city_obj.type = weather_type
+        city_obj.icon = icon
+
+        city_obj.save()
 
 
 def weather(request):
@@ -38,8 +40,12 @@ def weather(request):
         return redirect('home')
 
     if request.method == 'POST':
-        try:
-            city = request.POST.get('city')
+
+        city = request.POST.get('city')
+        url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c584d18750dd25c4a8c4e7c84d98d9d7'
+        response = requests.get(url).json()
+
+        if response['cod'] != '404':
             city = city.capitalize()
 
             existing_city = City.objects.filter(name=city, user=user).first()
@@ -49,12 +55,19 @@ def weather(request):
                 city_obj = City.objects.create(name=city, user=user)
 
             update_weather_data(city_obj, user)
-        except:  # NOQA
+        else:
             context = {'error': 'Write valid city',
                        'is_logged': is_logged,
-                       'user': user
-                       }
+                       'user': user}
+
             return render(request, 'weather.html', context)
+
+        # except:  # NOQA
+        #     context = {'error': 'Write valid city',
+        #                'is_logged': is_logged,
+        #                'user': user}
+        #
+        #     return render(request, 'weather.html', context)
 
     cities = City.objects.filter(user=user)
     if cities:
@@ -63,8 +76,8 @@ def weather(request):
 
     context = {'cities': cities,
                'is_logged': is_logged,
-               'user': user
-               }
+               'user': user}
+
     return render(request, 'weather.html', context)
 
 
