@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+
+{% block content %}
+
+    <section class="show_image">
+        {% for image in images %}
+            <div class="image-container">
+                <img src="data:image/jpeg;base64,{{ image.image_data|base64_encode }}" alt="Uploaded Image">
+
+                <div class="delete-button-container">
+                    <form method="POST" action="{% url 'delete_image' image.id %}" class="delete-image-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-image-button">X</button>
+                    </form>
+                </div>
+
+            </div>
+        {% empty %}
+            <p>No images uploaded yet.</p>
+        {% endfor %}
+    </section>
+
+
+{% endblock %}

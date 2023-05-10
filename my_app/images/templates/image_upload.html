@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if not image_data_base64 %}
+        <section class="upload_image">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="file" name="image_data" accept="image/*">
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+    {% endif %}
+
+    {% if success_message %}
+        <div class="alert alert-success"> {{ success_message }} </div>
+        <script>
+            setTimeout(function () {
+                window.location.href = "{% url 'images_show' %}";  // Replace "/redirect_url/" with your desired URL
+            }, 3500);  // Redirect after 3 seconds
+        </script>
+
+    {% endif %}
+
+    {% if image_data_base64 %}
+        <div class="image-section">
+            <img src="data:image/jpeg;base64,{{ image_data_base64 }}" alt="">
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}
