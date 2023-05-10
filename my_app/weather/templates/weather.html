@@ -10,8 +10,8 @@
         <button type="submit" class="weather_enter_button">Get Weather</button>
     </form>
 
-    {% if request.GET.error %}
-        <p class="error-message">{{ request.GET.error }}</p>
+    {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
     {% endif %}
 
     <div class="city-container">

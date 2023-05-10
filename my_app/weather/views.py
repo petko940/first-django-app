@@ -41,15 +41,19 @@ def weather(request):
     except:  # NOQA
         return redirect('home')
 
+    error_message = request.GET.get('error')  # Get the error message from the query parameters
+
     if request.method == 'POST':
         city = request.POST.get('city')
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c584d18750dd25c4a8c4e7c84d98d9d7'
         response = requests.get(url).json()
 
         if not city:
-            return HttpResponseRedirect(request.path_info + '?error=Invalid%20city!')
-
-        if response['cod'] != '404':
+            error_message = 'Invalid city!'
+        elif response['cod'] == '404':
+            error_message = 'Invalid city!'
+        # if response['cod'] != '404':
+        else:
             city = city.capitalize()
 
             existing_city = City.objects.filter(name=city, user=user).first()
@@ -59,8 +63,6 @@ def weather(request):
                 city_obj = City.objects.create(name=city, user=user)
 
             update_weather_data(city_obj, user)
-        else:
-            return HttpResponseRedirect(request.path_info + '?error=Invalid%20city!')
 
     cities = City.objects.filter(user=user)
     if cities:
@@ -69,7 +71,9 @@ def weather(request):
 
     context = {'cities': cities,
                'is_logged': is_logged,
-               'user': user}
+               'user': user,
+               'error_message': error_message,
+               }
 
     return render(request, 'weather.html', context)
 
