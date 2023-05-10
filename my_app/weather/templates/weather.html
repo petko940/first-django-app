@@ -2,15 +2,17 @@
 {% load static %}
 
 {% block content %}
-
     <form method="POST">
         {% csrf_token %}
         <label>
-            <input type="text" name="city" placeholder="Enter a city name">
+            <input type="text" class="weather_enter_city" name="city" placeholder="Enter a city name">
         </label>
-        <button type="submit" class="login-button">Get Weather</button>
-
+        <button type="submit" class="weather_enter_button">Get Weather</button>
     </form>
+
+    {% if request.GET.error %}
+        <p class="error-message">{{ request.GET.error }}</p>
+    {% endif %}
 
     <div class="city-container">
         {% for city in cities %}

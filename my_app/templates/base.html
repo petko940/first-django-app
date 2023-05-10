@@ -6,6 +6,7 @@
     <title>Test</title>
     <link rel="stylesheet" href="{% static 'style/auth.css' %}">
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/images.css' %}">
     <style>
         body {
             background-image: url("{% static 'images/bg.jpg' %}");
@@ -24,6 +25,7 @@
             {% if is_logged %}
                 <li><a href="{% url 'profile' %}">Profile</a></li>
                 <li><a href="{% url 'weather' %}">Weather</a></li>
+                <li><a href="{% url 'image_upload' %}">Upload image</a></li>
                 <li class="logout"><a href="{% url 'logout_view' %}">Logout</a></li>
             {% else %}
                 <li class="login"><a href="{% url 'login_view' %}">Login</a></li>
@@ -33,16 +35,22 @@
     </nav>
 </header>
 
-{% if is_logged %}
-    Logged
-{% endif %}
-
-
 {% block content %}
+    <div class="check-logged">
+        {% if is_logged %}
+            Logged
+        {% else %}
+            Not Logged
+        {% endif %}
+    </div>
+
+    <div class="container-beginning">
+        <h5>This is my first django project</h5>
+    </div>
 {% endblock %}
 
 <footer>
-{#        <p>&copy; </p>#}
+    {#        <p>&copy; </p>#}
 </footer>
 
 </body>

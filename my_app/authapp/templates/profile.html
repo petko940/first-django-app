@@ -2,10 +2,16 @@
 
 {% block content %}
 
-    <br>Username: {{ user.username }}
-    <br>Email: {{ user.email }}
-    <br>Password: {{ user.password1 }}
+    <div class="user-info">
+        <br>Username: {{ user.username }}
+        <br>Email: {{ user.email }}
+        <br>Password: {{ user.password1 }}
 
-    <a href="{% url 'profile_delete' %}" class="delete_button">Delete</a>
+    </div>
 
+
+    <div class="profile-button-container">
+        <a href="{% url 'images_show' %}" class="image_button">Show images</a>
+        <a href="{% url 'profile_delete' %}" class="btn_delete">Delete</a>
+    </div>
 {% endblock %}

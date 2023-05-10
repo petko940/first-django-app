@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authapp.urls')),
     path('', include('weather.urls')),
+    path('', include('images.urls')),
+    path('', include('exchange_rate.urls')),
 ]
 
 if settings.DEBUG:

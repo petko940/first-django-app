@@ -73,7 +73,8 @@ input[type="password"] {
     width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(125, 251, 255, 0);    border: 1px solid #ccc;
+    background-color: rgba(125, 251, 255, 0);
+    border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -111,23 +112,59 @@ input[type="password"] {
 }
 
 .profile_delete .btn_back {
-    background-color: #008809; /* Green background color */
-    border: none; /* Remove button border */
-    color: white; /* Text color */
-    padding: 8px 16px; /* Add padding */
-    font-size: 16px; /* Increase font size */
-    cursor: pointer; /* Change cursor on hover */
-    border-radius: 4px; /* Add border radius */
-    text-decoration: none; /* Remove default underline */
+    background-color: #008809;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
 .btn_delete {
-    background-color: #a40000; /* Green background color */
-    border: none; /* Remove button border */
-    color: white; /* Text color */
-    padding: 8px 16px; /* Add padding */
-    font-size: 16px; /* Increase font size */
-    cursor: pointer; /* Change cursor on hover */
-    border-radius: 4px; /* Add border radius */
-    text-decoration: none; /* Remove default underline */
+    background-color: #a40000;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+
+.user-info {
+    font-size: 20px;
+    font-family: "Source Sans Pro", sans-serif;
+    text-align: center;
+    width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(125, 251, 255, 0);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn_delete, .image_button {
+    margin-right: 10px;
+}
+
+.image_button {
+    background-color: #beb900;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
 }

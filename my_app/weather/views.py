@@ -1,4 +1,7 @@
+import time
+
 import requests
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from authapp.models import Register
@@ -14,7 +17,6 @@ def update_weather_data(city_obj, user):
     response = requests.get(url).json()
 
     if response['cod'] != '404':
-
         temperature = response['main']['temp'] - 273.15
         feels_like = response['main']['feels_like'] - 273.15
         humidity = response['main']['humidity']
@@ -40,10 +42,12 @@ def weather(request):
         return redirect('home')
 
     if request.method == 'POST':
-
         city = request.POST.get('city')
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c584d18750dd25c4a8c4e7c84d98d9d7'
         response = requests.get(url).json()
+
+        if not city:
+            return HttpResponseRedirect(request.path_info + '?error=Invalid%20city!')
 
         if response['cod'] != '404':
             city = city.capitalize()
@@ -56,18 +60,7 @@ def weather(request):
 
             update_weather_data(city_obj, user)
         else:
-            context = {'error': 'Write valid city',
-                       'is_logged': is_logged,
-                       'user': user}
-
-            return render(request, 'weather.html', context)
-
-        # except:  # NOQA
-        #     context = {'error': 'Write valid city',
-        #                'is_logged': is_logged,
-        #                'user': user}
-        #
-        #     return render(request, 'weather.html', context)
+            return HttpResponseRedirect(request.path_info + '?error=Invalid%20city!')
 
     cities = City.objects.filter(user=user)
     if cities:
