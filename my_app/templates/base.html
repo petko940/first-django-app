@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'style/auth.css' %}">
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="stylesheet" href="{% static 'style/images.css' %}">
+    <link rel="stylesheet" href="{% static 'style/exchange_css.css' %}">
     <style>
         body {
             background-image: url("{% static 'images/bg.jpg' %}");
@@ -39,7 +40,7 @@
 {% block content %}
     <div class="check-logged">
         {% if is_logged %}
-            Logged
+            Hello {{ user.username }}
         {% else %}
             Not Logged
         {% endif %}

@@ -71,7 +71,7 @@ input[type="password"] {
 
 .profile_delete {
     width: 500px;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 20px;
     background-color: rgba(125, 251, 255, 0);
     border: 1px solid #ccc;

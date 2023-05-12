@@ -24,7 +24,6 @@ def image_upload(request):
                 image_model = Image.objects.create(image_data=image_data,image_name=request.POST['image_name'], user=user)
                 image_data_base64 = base64.b64encode(image_model.image_data).decode('utf-8')
 
-
                 context = {'form': form,
                            'image_data_base64': image_data_base64,
                            'success_message': 'Image uploaded successfully!'}

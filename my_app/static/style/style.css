@@ -3,6 +3,8 @@ header {
 }
 
 nav ul {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
     margin: 0;
     padding: 0;
     list-style: none;
