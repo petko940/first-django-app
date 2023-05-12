@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="exchange-page">
+
+        <form method="POST" class="specific-form">
+            {% csrf_token %}
+            <div class="currency-text">
+                {{ form.base_currency.label_tag }}
+                {{ form.base_currency }}
+            </div>
+
+            <div class="currency-text">
+                {{ form.target_currency.label_tag }}
+                {{ form.target_currency }}
+            </div>
+
+            <button type="submit" class="convert-button">Convert</button>
+        </form>
+
+        {% if currency_code %}
+            <p>Base Currency: {{ currency_code }} - 1</p>
+        {% endif %}
+        {% if chosen_to_exchange %}
+            <p>Target Currency: {{ chosen_to_exchange }} - {{ rate }}</p>
+        {% endif %}
+
+        <div class="checked-exchanges">
+            <h3>Exchange rate history</h3>
+            {% if history %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Base currency</th>
+                        <th>Target currency</th>
+                        <th>Rate</th>
+                        <th>Timestamp</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for exchange in history %}
+                        <tr>
+                            <td>{{ exchange.base_currency }}</td>
+                            <td>{{ exchange.target_currency }}</td>
+                            <td>{{ exchange.rate }}</td>
+                            <td>{{ exchange.timestamp|date:'m M o G:i' }}</td>
+
+                            <td>
+                                <form method="POST" action="{% url 'exchange_delete' exchange.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-button">X</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% else %}
+                <p class="no-history-message">No exchange rate history available.</p>            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
