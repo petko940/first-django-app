@@ -28,7 +28,8 @@
                 <li><a href="{% url 'weather' %}">Weather</a></li>
                 <li><a href="{% url 'image_upload' %}">Upload image</a></li>
                 <li><a href="{% url 'exchange_rate' %}">Exchange rate</a></li>
-                <li class="logout"><a href="{% url 'logout_view' %}">Logout</a></li>
+                <li class="logout">Welcome, {{ user.username }}</li>
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>
             {% else %}
                 <li class="login"><a href="{% url 'login_view' %}">Login</a></li>
                 <li><a href="{% url 'register_view' %}">Register</a></li>
@@ -39,9 +40,7 @@
 
 {% block content %}
     <div class="check-logged">
-        {% if is_logged %}
-            Hello {{ user.username }}
-        {% else %}
+        {% if not is_logged %}
             Not Logged
         {% endif %}
     </div>

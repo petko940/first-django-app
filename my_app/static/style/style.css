@@ -29,7 +29,10 @@ nav li a:hover {
 }
 
 li.logout {
+    padding: 14px;
     margin-left: auto;
+    justify-content: flex-start;
+    color: white;
 }
 
 li.login {
