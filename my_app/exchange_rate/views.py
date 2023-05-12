@@ -35,18 +35,18 @@ def exchange_rate(request):
 
             exchange_history.save()
 
-            history = ExchangeRateHistory.objects.filter(user=user).order_by('-timestamp')
-
-            context = {
-                'currency_code': currency_code,
-                'rate': rate,
-                'rate-currency': data['conversion_rates'],
-                'chosen_to_exchange': chosen_to_exchange,
-                'form': form,
-                'is_logged': is_logged,
-                'user': user,
-                'history': history
-            }
+            # history = ExchangeRateHistory.objects.filter(user=user).order_by('-timestamp')
+            #
+            # context = {
+            #     'currency_code': currency_code,
+            #     'rate': rate,
+            #     'rate-currency': data['conversion_rates'],
+            #     'chosen_to_exchange': chosen_to_exchange,
+            #     'form': form,
+            #     'is_logged': is_logged,
+            #     'user': user,
+            #     'history': history
+            # }
             return redirect('exchange_rate')
             # return redirect(request, 'exchange_rate.html', context)
     else:
