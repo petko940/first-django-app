@@ -128,14 +128,14 @@ def profile(request):
     except ProfileImageUpdate.DoesNotExist:
         profile_image_update = None
 
-    number_images = Image.objects.all()
-    chosen_cities_number = City.objects.all()
+    number_images = Image.objects.filter(user=user)
+    chosen_cities_number = City.objects.filter(user=user)
 
     context = {'is_logged': is_logged,
                'user': user,
                'profile_image_update': profile_image_update,
-               'number_images':len(number_images),
-               'chosen_cities_number':len(chosen_cities_number),
+               'number_images': len(number_images),
+               'chosen_cities_number': len(chosen_cities_number),
                }
 
     return render(request, 'profile.html', context)
@@ -170,5 +170,3 @@ def profile_delete(request):
     context = {'user': user,
                'is_logged': is_logged}
     return render(request, 'profile_delete.html', context)
-
-

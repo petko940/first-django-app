@@ -14,16 +14,22 @@
             {% endif %}
         </div>
 
-        <br>Username: {{ user.username }}
-        <br>Email: {{ user.email }}
-{#        <br>Password: {{ user.password1 }}#}
-        <br>Uploaded images: <div class="h7">{{ number_images }}</div>
-        <br>Chosen weather cities:  <div class="h7">{{ chosen_cities_number }}</div>
-    </div>
+        <div class="profile-text">
+            Username: {{ user.username }}
+            <br>Email: {{ user.email }}
+             </div>
+            <br><br><br>
+            Uploaded images:
+            <div class="h7">{{ number_images }}</div>
+            Chosen weather cities:
+            <div class="h7">{{ chosen_cities_number }}</div>
 
-    <div class="profile-button-container">
+     <div class="profile-button-container">
         <a href="{% url 'images_show' %}" class="image_button">Show images</a>
         <a href="{% url 'profile_delete' %}" class="btn_delete">Delete profile</a>
     </div>
+    </div>
+
+
 
 {% endblock %}
