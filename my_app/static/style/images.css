@@ -52,6 +52,7 @@
 }
 
 .upload_image input[type="file"] {
+    max-width: 250px;
     padding: 10px 20px;
     background-color: #163f50;
     color: white;
@@ -64,6 +65,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+input[type="text"].upload-name-image,
+input[type="email"].upload-name-image,
+input[type="password"].upload-name-image {
+    width: 250px;
 }
 
 .upload_image button[type="submit"] {

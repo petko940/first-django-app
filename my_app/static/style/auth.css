@@ -59,6 +59,8 @@ input[type="password"] {
 
 
 .errorlist {
+    font-size: 20px;
+    text-align: center;
     color: #a90000;
     list-style-type: none;
 }

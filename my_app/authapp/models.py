@@ -1,3 +1,5 @@
+import re
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Model
@@ -7,6 +9,9 @@ from django.db.models import Model
 def validate_username(value):
     if Register.objects.filter(username=value).exists():
         raise ValidationError("This username is already taken.")
+
+    if not re.match(r'^[A-Za-z](?=.*[A-Za-z\d])[A-Za-z\d]{4,}$', value):
+        raise ValidationError("Invalid username")
 
 
 def validate_email(value):
@@ -23,3 +28,6 @@ class Register(Model):
     def clean(self):
         if self.password1 != self.password2:
             raise ValidationError("Passwords do not match.")
+
+        if len(self.password1) < 6 or len(self.password2) < 6:
+            raise ValidationError("Password is too short")

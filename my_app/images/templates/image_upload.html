@@ -8,7 +8,9 @@
                 {% csrf_token %}
                 {{ form.as_p }}
 
-                <input type="file" name="image_data" accept="image/*">
+                <div class="upload-name-image">
+                    <input type="file" name="image_data" accept="image/*">
+                </div>
                 <button type="submit">Upload</button>
             </form>
         </section>
