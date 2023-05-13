@@ -56,6 +56,8 @@ def image_upload(request):
         'user': user
     }
     return render(request, 'image_upload.html', context)
+
+
 def images_show(request):
     try:
         user = Register.objects.get(id=request.session.get('user_id'))
