@@ -4,8 +4,8 @@
 }
 
 .image-section img {
-    max-width: 100%;
-    height: auto;
+    width: 50%;
+    height: 50%;
 }
 
 
@@ -27,7 +27,7 @@
 .image-container img {
     width: 240px;
     height: 240px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .delete-button-container {

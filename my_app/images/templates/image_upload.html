@@ -15,13 +15,18 @@
     {% endif %}
 
     {% if success_message %}
+
         <div class="alert alert-success"> {{ success_message }} </div>
         <script>
             setTimeout(function () {
                 window.location.href = "{% url 'images_show' %}";  // Replace "/redirect_url/" with your desired URL
             }, 3500);  // Redirect after 3 seconds
         </script>
-
+        <style>
+            nav ul {
+                display: none;
+            }
+        </style>
     {% endif %}
 
     {% if image_data_base64 %}

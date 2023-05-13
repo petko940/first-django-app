@@ -13,11 +13,12 @@
                 <img src="{% static 'images/default_image_profile.jpg' %}" alt="Default Image">
             {% endif %}
         </div>
-    kacheni snimki:...
-    kacheni weather:...
+
         <br>Username: {{ user.username }}
         <br>Email: {{ user.email }}
-        <br>Password: {{ user.password1 }}
+{#        <br>Password: {{ user.password1 }}#}
+        <br>Uploaded images: <div class="h7">{{ number_images }}</div>
+        <br>Chosen weather cities:  <div class="h7">{{ chosen_cities_number }}</div>
     </div>
 
     <div class="profile-button-container">

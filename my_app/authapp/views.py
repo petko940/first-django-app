@@ -128,9 +128,14 @@ def profile(request):
     except ProfileImageUpdate.DoesNotExist:
         profile_image_update = None
 
+    number_images = Image.objects.all()
+    chosen_cities_number = City.objects.all()
+
     context = {'is_logged': is_logged,
                'user': user,
                'profile_image_update': profile_image_update,
+               'number_images':len(number_images),
+               'chosen_cities_number':len(chosen_cities_number),
                }
 
     return render(request, 'profile.html', context)
