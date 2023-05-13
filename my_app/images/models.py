@@ -10,3 +10,7 @@ class Image(models.Model):
 
     user = models.ForeignKey(Register, on_delete=models.CASCADE, null=True)
 
+
+class ProfileImageUpdate(models.Model):
+    image_data = models.ForeignKey(Image, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(Register, on_delete=models.CASCADE, null=True)

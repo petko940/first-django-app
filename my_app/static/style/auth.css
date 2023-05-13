@@ -140,12 +140,23 @@ input[type="password"] {
     text-align: center;
     width: 500px;
     margin: 30px auto;
-    padding: 20px;
-    background-color: rgba(125, 251, 255, 0);
+    padding: 10px;
+    background-color: rgba(88, 255, 249, 0.13);
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.profile-picture {
+    float: left;
+    margin-right: 20px;
+}
+
+.profile-picture img {
+        width: 100px;
+    height: 100px;
+}
+
 
 
 .profile-button-container {
@@ -159,7 +170,7 @@ input[type="password"] {
 }
 
 .image_button {
-    background-color: #beb900;
+    background-color: #007036;
     border: none;
     color: white;
     padding: 8px 16px;

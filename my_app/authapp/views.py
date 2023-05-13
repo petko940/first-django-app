@@ -1,13 +1,13 @@
 import hashlib
 from datetime import datetime
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, get_user_model
 from django.http import HttpResponse
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from authapp.forms import RegisterForm, LoginForm
 from authapp.models import Register
-
+from images.models import Image, ProfileImageUpdate
 
 from weather.models import City
 
@@ -53,7 +53,8 @@ def register_view(request):
                 user = Register.objects.create(username=username,
                                                email=email,
                                                password1=hashed_password,
-                                               password2=hashed_password2)
+                                               password2=hashed_password2,
+                                               )
                 user.save()
                 request.session['user_id'] = user.id
 
@@ -121,10 +122,33 @@ def profile(request):
 
     user = Register.objects.get(id=request.session.get('user_id'))
     is_logged = check_if_someone_logged(request)
+
+    try:
+        profile_image_update = ProfileImageUpdate.objects.get(user=user)
+    except ProfileImageUpdate.DoesNotExist:
+        profile_image_update = None
+
     context = {'is_logged': is_logged,
-               'user': user}
+               'user': user,
+               'profile_image_update': profile_image_update,
+               }
 
     return render(request, 'profile.html', context)
+
+
+def change_profile_picture(request, image_id):
+    image = Image.objects.get(id=image_id)
+    user = Register.objects.get(id=request.session.get('user_id'))
+
+    try:
+        profile_image_update = ProfileImageUpdate.objects.get(user=user)
+        profile_image_update.image_data = image
+        profile_image_update.save()
+    except ProfileImageUpdate.DoesNotExist:
+        profile_image_update = ProfileImageUpdate(user=user, image_data=image)
+        profile_image_update.save()
+
+    return redirect('profile')
 
 
 def profile_delete(request):

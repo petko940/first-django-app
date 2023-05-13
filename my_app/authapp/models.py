@@ -1,29 +1,9 @@
-from django import forms
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Model
 
 
 # Create your models here.
-# def validate_username(value, user_instance=None):
-#     if user_instance:
-#         queryset = Register.objects.filter(username=value).exclude(id=user_instance.id)
-#     else:
-#         queryset = Register.objects.filter(username=value)
-#     if queryset.exists():
-#         raise ValidationError("This username is already taken.")
-#
-#
-# def validate_email(value, user_instance=None):
-#     if user_instance:
-#         queryset = Register.objects.filter(email=value).exclude(id=user_instance.id)
-#     else:
-#         queryset = Register.objects.filter(email=value)
-#     if queryset.exists():
-#         raise ValidationError("This email is already taken.")
-
-
-# -----working
 def validate_username(value):
     if Register.objects.filter(username=value).exists():
         raise ValidationError("This username is already taken.")

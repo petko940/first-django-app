@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
 
 {% block content %}
 
     <div class="user-info">
+        <div class="profile-picture">
+            {% if profile_image_update %}
+                <img src="data:image/jpeg;base64,{{ profile_image_update.image_data.image_data|base64_encode }}"
+                     alt="Uploaded Image">
+            {% else %}
+                <img src="{% static 'images/default_image_profile.jpg' %}" alt="Default Image">
+            {% endif %}
+        </div>
+    kacheni snimki:...
+    kacheni weather:...
         <br>Username: {{ user.username }}
         <br>Email: {{ user.email }}
         <br>Password: {{ user.password1 }}
-
     </div>
-
 
     <div class="profile-button-container">
         <a href="{% url 'images_show' %}" class="image_button">Show images</a>
-        <a href="{% url 'profile_delete' %}" class="btn_delete">Delete</a>
+        <a href="{% url 'profile_delete' %}" class="btn_delete">Delete profile</a>
     </div>
+
 {% endblock %}

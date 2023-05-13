@@ -9,6 +9,14 @@
             <div class="image-container">
                 <img src="data:image/jpeg;base64,{{ image.image_data|base64_encode }}" alt="Uploaded Image">
 
+                <div class="change-picture-container">
+                    <form method="POST" action="{% url 'change_profile_picture' image.id %}"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <button type="submit">Change Profile Picture</button>
+                    </form>
+                </div>
+
                 <div class="delete-button-container">
                     <form method="POST" action="{% url 'delete_image' image.id %}" class="delete-image-form">
                         {% csrf_token %}
