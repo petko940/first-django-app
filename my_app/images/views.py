@@ -1,7 +1,7 @@
 import base64
 
-from django.http import HttpResponseBadRequest
-from django.shortcuts import render, redirect
+from django.http import HttpResponseBadRequest, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 
 from authapp.models import Register
 from authapp.views import check_if_someone_logged
@@ -74,7 +74,10 @@ def images_show(request):
 
 
 def delete_image(request, image_id):
-    image = Image.objects.get(id=image_id)
-    image.delete()
+    try:
+        image = get_object_or_404(Image, id=image_id)
+        image.delete()
+    except Image.DoesNotExist:
+        return HttpResponse("Image not found.")
 
     return redirect('images_show')

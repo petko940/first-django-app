@@ -55,8 +55,9 @@ li.login {
 
 .city-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, calc(25% - 20px)));
+    grid-template-columns: repeat(auto-fit, minmax(320px, calc(25% - 20px)));
     grid-gap: 20px;
+    grid-auto-rows: min-content
 }
 
 .city {
@@ -97,7 +98,7 @@ li.login {
 .delete-button {
     font-family: "HoloLens MDL2 Assets", sans-serif;
     font-size: 20px;
-    text-shadow: 0 0 8px #f80000;
+    background-color: red;
     color: #000000;
     width: 30px;
     height: 30px;
