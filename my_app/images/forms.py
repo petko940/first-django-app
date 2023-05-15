@@ -4,7 +4,7 @@ from images.models import Image
 
 
 class ImageForm(forms.ModelForm):
-    image_name = forms.CharField(widget=forms.TextInput(
+    image_name = forms.CharField(max_length=30,widget=forms.TextInput(
         attrs={'placeholder': 'Enter image name',
                'class': 'upload-name-image'}),
         label=''

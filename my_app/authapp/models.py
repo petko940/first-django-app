@@ -10,7 +10,7 @@ def validate_username(value):
     if Register.objects.filter(username=value).exists():
         raise ValidationError("This username is already taken.")
 
-    if not re.match(r'^[A-Za-z](?=.*[A-Za-z\d])[A-Za-z\d]{4,}$', value):
+    if not re.match(r'^[A-Za-z](?=.*[A-Za-z\d])[A-Za-z\d]{2,}$', value):
         raise ValidationError("Invalid username")
 
 

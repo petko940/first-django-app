@@ -7,6 +7,10 @@
     <section class="show_image">
         {% for image in images %}
             <div class="image-container">
+                <div class="image-name">
+                    {{ image.image_name }}
+                </div>
+
                 <img src="data:image/jpeg;base64,{{ image.image_data|base64_encode }}" alt="Uploaded Image">
 
                 <div class="change-picture-container">
