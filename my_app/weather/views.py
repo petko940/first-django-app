@@ -13,7 +13,7 @@ from weather.models import City
 def update_weather_data(city_obj, user):
     city = city_obj.name.capitalize()
 
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=c584d18750dd25c4a8c4e7c84d98d9d7'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=4efda915428f625a249c2eb84797631e'
     response = requests.get(url).json()
 
     if response['cod'] != '404':
